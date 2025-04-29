@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // <-- Import router
 import { useEffect, useRef, useState } from 'react';
+import { MdEmail, MdPhone } from "react-icons/md";
 
 type Project = {
   project: string;
@@ -111,15 +112,27 @@ export default function ResumePreviewPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h1 className="text-3xl font-bold ">{resume.name}</h1>
-            {resume.email && <p className="text-gray-700 mt-2">{resume.email}</p>}
-            {resume.phone && <p className="text-gray-700">{resume.phone}</p>}
+            <div className='flex gap-5 items-center mt-2'>
+              {resume.email && (
+                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
+                  <MdEmail className="text-red-700" />
+                  <p>{resume.email}</p>
+                </div>
+              )}
+              {resume.phone && (
+                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
+                  <MdPhone className="text-red-700" />
+                  <p>{resume.phone}</p>
+                </div>
+              )}
+            </div>
           </div>
           <Image src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={170} height={100} />
         </div>
 
         {/* Profile Summary */}
         <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Profile Summary</h2>
-        <ul className="list-disc pl-6 " style={{ fontSize: '12px' }}>
+        <ul className="list-disc pl-6 " style={{ fontSize: '13px' }}>
           {resume.summary
             .split(/(?<=[.!?])\s+/)
             .filter((line) => line.trim() !== '')
@@ -130,15 +143,15 @@ export default function ResumePreviewPage() {
 
         {/* Skills */}
         <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Skills</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', paddingLeft: '24px' }}>
           {resume.skills.map((skill, idx) => (
             <span
               key={idx}
               style={{
                 padding: '4px 12px',
-                backgroundColor: '#DBEAFE',
-                border: '1px solid #1E40AF',
-                color: '#1E40AF',
+                backgroundColor: '#000',
+                border: '3px solid #A82324',
+                color: '#fff',
                 fontSize: '0.875rem',
                 borderRadius: '9999px',
                 display: 'inline-block',
@@ -155,32 +168,33 @@ export default function ResumePreviewPage() {
         <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Projects Details</h2>
         {resume.projects.map((project, idx) => (
           <div key={idx} className="mb-6 pl-6 pb-3">
-            <h3 className="font-bold" style={{ fontSize: '14px' }}>Project: {project.project}</h3>
+            <h3 className="font-bold underline" style={{ fontSize: '14px' }}>Project: {project.project}</h3>
 
-            <div className="mt-2">
-              <p className="" style={{ fontSize: '12px', color: 'black' }}>
-                <strong>Tools Used: </strong>
-                {project.tools_used.map((tool, idx) => (
-                  <span style={{ fontSize: '12px' }} key={idx}>{tool}, </span>
-                ))}
-              </p>
-            </div>
-            <div className="mt-2">
-
-              <p className=" mt-1" style={{ fontSize: '12px', color: 'black' }}><strong style={{ fontSize: '12px' }}>Description: </strong>{project.description}</p>
-            </div>
-
-            {/* Roles and Responsibilities */}
-            {project.roles_and_responsibilities && project.roles_and_responsibilities.length > 0 && (
+            <div className='pl-4'>
               <div className="mt-2">
-                <strong style={{ fontSize: '12px' }}>Roles and Responsibilities:</strong>
-                <ul className="list-disc pl-6" style={{ fontSize: '12px' }}>
-                  {project.roles_and_responsibilities.map((role, idx) => (
-                    <li key={idx}>{role}</li>
+                <p className="" style={{ fontSize: '13px', color: 'black' }}>
+                  <strong>Tools Used: </strong>
+                  {project.tools_used.map((tool, idx) => (
+                    <span style={{ fontSize: '13px' }} key={idx}>{tool}, </span>
                   ))}
-                </ul>
+                </p>
               </div>
-            )}
+              <div className="mt-2">
+                <p className=" mt-1" style={{ fontSize: '13px', color: 'black' }}><strong style={{ fontSize: '13px' }}>Description: </strong>{project.description}</p>
+              </div>
+
+              {/* Roles and Responsibilities */}
+              {project.roles_and_responsibilities && project.roles_and_responsibilities.length > 0 && (
+                <div className="mt-2">
+                  <strong style={{ fontSize: '13px' }}>Roles and Responsibilities:</strong>
+                  <ul className="list-disc pl-6" style={{ fontSize: '13px' }}>
+                    {project.roles_and_responsibilities.map((role, idx) => (
+                      <li key={idx}>{role}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

@@ -40,6 +40,9 @@ export default function ResumeFormPage() {
     selectedProjects: [],
   });
 
+  const [nameError, setNameError] = useState('');
+
+
   const router = useRouter();
 
   useEffect(() => {
@@ -51,10 +54,10 @@ export default function ResumeFormPage() {
           name: json.name,
           email: json.email,
           phone: json.phone,
-          selectedSummaries: json.profile_summary.map(() => true),
+          selectedSummaries: json.profile_summary.map(() => false),
           customSummary: '',
-          selectedSkill: json.skill.map(() => true),
-          selectedProjects: json.project_details.map(() => true),
+          selectedSkill: json.skill.map(() => false),
+          selectedProjects: json.project_details.map(() => false),
         });
       });
   }, []);
@@ -80,6 +83,18 @@ export default function ResumeFormPage() {
   const handleSubmit = () => {
     if (!data) return;
 
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    if (!form.name.trim()) {
+      setNameError('Name is required.');
+      return;
+    } else if (!nameRegex.test(form.name)) {
+      setNameError('Name should contain only letters and spaces.');
+      return;
+    } else {
+      setNameError('');
+    }
+
     const selectedSummaryTexts = data.profile_summary.filter((_, idx) => form.selectedSummaries[idx]);
     const finalSummary = [...selectedSummaryTexts, form.customSummary].filter(Boolean).join(' ');
 
@@ -99,22 +114,25 @@ export default function ResumeFormPage() {
     router.push('/resume/preview');
   };
 
+
   if (!data) return <div className="p-6">Loading...</div>;
 
   return (
     <div className="p-8 max-w-3xl mx-auto bg-white text-black">
-      <h1 className="text-2xl font-bold mb-6">Customize Your Resume</h1>
+      <h1 className="text-2xl font-bold mb-6 text-[#A82324]">ResumeCraft</h1>
 
       {/* Name Input */}
-      <label className="block mb-2 font-bold" style={{fontSize: '16px', color: '#A82324' }}>Name:</label>
+      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Name:</label>
       <input
         type="text"
         value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
-        className="border p-2 w-full mb-4"
+        className={`border p-2 w-full mb-1 ${nameError ? 'border-red-500' : ''}`}
       />
+      {nameError && <p className="text-red-500 text-sm mb-4">{nameError}</p>}
 
-      <label className="block mb-2 font-bold" style={{fontSize: '16px', color: '#A82324'}}>Email:</label>
+
+      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Email:</label>
       <input
         type="text"
         value={form.email}
@@ -122,7 +140,7 @@ export default function ResumeFormPage() {
         className="border p-2 w-full mb-4"
       />
 
-      <label className="block mb-2 font-bold" style={{fontSize: '16px', color: '#A82324'}}>Phone:</label>
+      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Phone:</label>
       <input
         type="text"
         value={form.phone}
@@ -131,15 +149,16 @@ export default function ResumeFormPage() {
       />
 
       {/* Summary Section */}
-      <h2 className="text-xl font-semibold mb-2" style={{fontSize: '16px', color: '#A82324'}}>Select Summary Points:</h2>
+      <h2 className="text-xl font-semibold mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Summary Points:</h2>
       {data.profile_summary.map((summary, index) => (
         <div key={index} className="mb-2 pl-3">
-          <label className="flex items-start" style={{fontSize: '14px'}}>
+          <label className="flex items-start cursor-pointer hover:text-[#A82324]" style={{ fontSize: '14px' }}>
             <input
               type="checkbox"
               checked={form.selectedSummaries[index]}
               onChange={() => handleSummaryCheckboxChange(index)}
-              className="mr-2 mt-1"
+              className="mr-2 mt-1 accent-red-600"
+
             />
             {summary}
           </label>
@@ -147,7 +166,7 @@ export default function ResumeFormPage() {
       ))}
 
       {/* Custom Summary */}
-      <label className="block mt-4 mb-2 font-bold" style={{fontSize: '16px', color: '#A82324'}}>Add Custom Summary:</label>
+      <label className="block mt-4 mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Add Custom Summary:</label>
       <textarea
         value={form.customSummary}
         onChange={(e) => setForm({ ...form, customSummary: e.target.value })}
@@ -155,15 +174,15 @@ export default function ResumeFormPage() {
       />
 
       {/* Skill Section */}
-      <h2 className="text-xl font-semibold mb-2" style={{fontSize: '16px', color: '#A82324'}}>Select Skills:</h2>
+      <h2 className="text-xl font-semibold mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Skills:</h2>
       {data.skill.map((skill, index) => (
-        <div key={index} className="mb-2 pl-3">
-          <label className="flex items-center" style={{fontSize: '12px'}}>
+        <div key={index} className="mb-2 pl-3 ">
+          <label className="flex items-center cursor-pointer hover:text-[#A82324]" style={{ fontSize: '12px' }}>
             <input
               type="checkbox"
               checked={form.selectedSkill[index]}
               onChange={() => handleSkillCheckboxChange(index)}
-              className="mr-2"
+              className="mr-2 accent-red-600"
             />
             {skill}
           </label>
@@ -171,17 +190,17 @@ export default function ResumeFormPage() {
       ))}
 
       {/* Projects Section */}
-      <h2 className="text-xl font-semibold mt-8 mb-2" style={{fontSize: '16px', color: '#A82324'}}>Select Projects:</h2>
+      <h2 className="text-xl font-semibold mt-8 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Projects:</h2>
       {data.project_details.map((project, index) => (
         <div key={index} className="mb-2 pl-3">
-          <label className="flex items-center cursor-pointer text-sm" >
+          <label className="flex items-center cursor-pointer text-sm cursor-pointer hover:text-[#A82324]" >
             <input
               type="checkbox"
               checked={form.selectedProjects[index]}
               onChange={() => handleProjectCheckboxChange(index)}
-              className="mr-2"
+              className="mr-2 accent-red-600"
             />
-            <strong>{project.project}</strong>
+            <span>{project.project}</span>
           </label>
           {/* <div className="mt-2">
             <strong>Tools Used:</strong>
@@ -210,7 +229,7 @@ export default function ResumeFormPage() {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="mt-8 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+        className="mt-8 px-6 py-3 bg-[#A82324] hover:opacity-90 text-white rounded cursor-pointer"
       >
         Preview Resume
       </button>
