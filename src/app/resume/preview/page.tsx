@@ -98,7 +98,7 @@ export default function ResumePreviewPage() {
 
         <button
           onClick={handlePrint}
-          className="px-4 py-2 bg-green-600 text-white rounded cursor-pointer"
+          className="px-4 py-2 bg-[#A82324] text-white rounded cursor-pointer"
         >
           Print Resume
         </button>
@@ -109,7 +109,7 @@ export default function ResumePreviewPage() {
       <div ref={ref} className="bg-white text-black p-8 rounded shadow max-w-3xl mx-auto">
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
           <div>
             <h1 className="text-3xl font-bold ">{resume.name}</h1>
             <div className='flex gap-5 items-center mt-2'>
@@ -150,7 +150,7 @@ export default function ResumePreviewPage() {
               style={{
                 padding: '4px 12px',
                 backgroundColor: '#000',
-                border: '3px solid #A82324',
+                // border: '3px solid #A82324',
                 color: '#fff',
                 fontSize: '0.875rem',
                 borderRadius: '9999px',

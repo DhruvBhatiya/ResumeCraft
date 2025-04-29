@@ -121,12 +121,12 @@ export default function ResumeFormPage() {
   return (
     <div className="p-8 max-w-3xl mx-auto bg-white text-black">
       <div className='mb-6' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 className="text-2xl font-bold  text-[#A82324]">NextStep Resume</h1>
+        <h1 className="text-2xl font-bold  text-[#A82324]">Innovage Resume Generator</h1>
         <Image src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={170} height={100} />
       </div>
 
       {/* Name Input */}
-      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Name:</label>
+      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Name*</label>
       <input
         type="text"
         value={form.name}
@@ -138,7 +138,7 @@ export default function ResumeFormPage() {
 
       <div className="flex gap-4">
         <div className="w-1/2">
-          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Email:</label>
+          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Email</label>
           <input
             type="text"
             value={form.email}
@@ -148,7 +148,7 @@ export default function ResumeFormPage() {
         </div>
 
         <div className="w-1/2">
-          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Phone:</label>
+          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Phone</label>
           <input
             type="text"
             value={form.phone}
