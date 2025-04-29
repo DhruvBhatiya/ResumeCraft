@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { jsPDF } from 'jspdf';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // <-- Import router
+import { useEffect, useRef, useState } from 'react';
 
 type Project = {
   project: string;

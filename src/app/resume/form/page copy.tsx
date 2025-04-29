@@ -2,9 +2,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type Skill = {
-  skill: string;
-};
 
 type Project = {
   project: string;
