@@ -1,0 +1,21 @@
+{
+  "name": "Krunal Rawal",
+  "summary": "VBCS developer with 5+ years in Oracle Technologies including OIC, VBCS, PL/SQL, and REST/SOap integrations.",
+  "projects": [
+    {
+      "title": "Time Attendance System",
+      "tools": ["OIC", "VBCS", "PLSQL"],
+      "description": "Automated check-in/out system with biometric integration, VBCS UI, and PLSQL reporting. Reduced manual errors by 60%."
+    },
+    {
+      "title": "One-Time Payment Solution (OTP)",
+      "tools": ["OIC", "VBCS", "ATP"],
+      "description": "Developed a payment disbursement solution with VBCS frontend and OIC ERP integration. Cut processing time by 70%."
+    },
+    {
+      "title": "Rental Application System",
+      "tools": ["OIC", "VBCS", "PL/SQL"],
+      "description": "Managed full rental lifecycle with VBCS forms and automated renewals via OIC."
+    }
+  ]
+}

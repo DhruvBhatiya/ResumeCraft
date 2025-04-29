@@ -1,0 +1,202 @@
+{
+  "name": "",
+  "email": "",
+  "phone": "",
+  "profile_summary": [
+    "As a VBCS developer with over 5 years of experience in Oracle Technologies, I have a strong grasp of asynchronous programming, Restful API’s, and web services.",
+    "My expertise includes Oracle Integration Cloud (OIC), where I have successfully integrated applications to enhance workflows.",
+    "I excel in debugging and troubleshooting, and I have developed user interfaces tailored to user requirements using VBCS/VBS.",
+    "Additionally, I am skilled in bug analysis and resolution, with extensive experience in Node.js technology, making me a valuable asset in delivering innovative solutions within the Oracle ecosystem.",
+    "Built custom apps and dashboards using VBCS to extend Fusion functionalities for Procurement and HR modules.",
+    "Developed REST and SOAP-based integrations, handled data mapping, error handling, and business rule configurations.",
+    "Automated invoice and payment processing using OIC with File Adapter, FTP, and REST connectors.",
+    "Implemented custom approval workflows in OIC Process Automation. Designed and optimized complex PL/SQL procedures, functions, packages, and triggers for ERP back-end processes.",
+    "Worked closely with functional teams to gather requirements and translate them into technical solutions using Oracle database.",
+    "Built custom reports and data loaders using PL/SQL and Oracle BI Publisher.",
+    "Supported Oracle EBS modules and participated in data migration and interface development.",
+    "Wrote and tuned SQL queries for performance and reliability across high-volume datasets.",
+    "Adept in building custom applications using VBCS, automating business processes, and writing efficient PL/SQL code for backend data operations. Strong understanding of Oracle Fusion modules, REST/SOAP services, and modern cloud-native development practices.",
+    "Results-driven Oracle Cloud professional with over X years of experience in designing, developing, and deploying scalable enterprise solutions using Oracle Integration Cloud (OIC), Visual Builder Cloud Service (VBCS), and PL/SQL. Proven ability to deliver end-to-end integrations between Oracle SaaS, on-premise applications, and third-party systems.",
+    "Committed to delivering high-quality solutions in agile environments.",
+    "Good Team player and also have ability to work independently.",
+    "Experience in solution design, and delivery and managing teams globally.",
+    "Results-driven Oracle Cloud professional with over X years of experience in designing, developing, and deploying scalable enterprise solutions using Oracle Integration Cloud (OIC), Visual Builder Cloud Service (VBCS), and PL/SQL. Proven ability to deliver end-to-end integrations between Oracle SaaS, on-premise applications, and third-party systems.",
+    "Designed and implemented custom web and mobile applications using VBCS, enhancing user experience and automating manual business processes.",
+    "Built real-time and scheduled integrations using OIC, managing exception handling, transformation logic, and orchestration flows.",
+    "Integrated VBCS applications with Oracle SaaS and custom APIs, enabling CRUD operations, dynamic forms, dashboards, and business workflows.",
+    "Performed unit testing, debugging, and performance tuning to ensure stable and optimized integrations and applications.",
+    "Expert in incident analysis and bug fixing.",
+    "Participated in Agile development cycles, collaborating with cross-functional teams in sprints for faster delivery and feedback."
+  ],
+  "technical_summary": {
+    "cloud_technologies": [
+      "Oracle Cloud Services(OIC)-PaaS",
+      "Oracle Cloud Visual Builder (VBCS)",
+      "Oracle JET",
+      "Application Development Framework (ADF)",
+      "Oracle Application Framework (OAF)"
+    ],
+    "oracle_cloud_tools": [
+      "Integration Cloud Services (ICS)",
+      "Oracle Rest Data Services (ORDS)",
+      "Oracle APEX"
+    ],
+    "database": [
+      "Oracle 11g",
+      "12c",
+      "19c",
+      "21c",
+      "Oracle ATP",
+      "MySQL"
+    ],
+    "programming_languages": [
+      "Java/J2EE",
+      "SQL",
+      "PL/SQL"
+    ],
+    "j2ee_technologies": [
+      "Servlet",
+      "JSP",
+      "JDBC"
+    ],
+    "web_technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JQuery"
+    ],
+    "back_end_frameworks": [
+      "Spring (IOC,MVC,JDBC)",
+      "Spring boot",
+      "JPA"
+    ],
+    "frontend_frameworks": [
+      "Oracle JET",
+      "Angular JS"
+    ],
+    "web_servers": [
+      "Oracle WebLogic Server",
+      "Glassfish Server",
+      "Payara",
+      "Apache Tomcat Server",
+      "Web sphere (IBM)"
+    ],
+    "web_services": [
+      "SOAP",
+      "Restful"
+    ],
+    "version_controlling": [
+      "Git Hub",
+      "SVN"
+    ],
+    "java_ides": [
+      "JDeveloper",
+      "Eclipse",
+      "STS",
+      "Apache Maven",
+      "Jenkins"
+    ]
+  },
+  "skill": ["VBCS","OIC","APEX"] ,
+  "project_details": [
+    {
+      "project": "Time Attendance System",
+      "tools_used": [
+        "Oracle Integration Cloud (OIC)",
+        "Visual Builder Cloud Service (VBCS)",
+        "PLSQL"
+      ],
+      "description": "Developed an automated Time Attendance System to streamline employee check-in/out tracking and generate real-time attendance reports. Integrated HR systems using OIC, designed intuitive UIs with VBCS, and handled data operations through PLSQL.",
+      "roles_and_responsibilities": [
+        "Created integration flows with OIC to connect biometric devices and HRMS databases.",
+        "Built interactive front-end screens in VBCS for attendance tracking and approval workflows.",
+        "Wrote complex PLSQL procedures for data validation, shift logic, and report generation.",
+        "Enabled real-time visibility into attendance trends, reducing manual errors by 60%.",
+        "Designed and scheduled reports for integration and enabled bursting to SFTP server."
+      ]
+    },
+    {
+      "project": "One-Time Payment Solution (OTP)",
+      "tools_used": [
+        "Oracle Integration Cloud",
+        "Oracle VBCS",
+        "Oracle VB Studio",
+        "Autonomous Database (ATP)",
+        "Oracle Analytics"
+      ],
+      "description": "Developed a One-Time Payment (OTP) solution to enable streamlined, secure disbursement of ad-hoc payments without PO references. The system was designed for rapid processing, multi-level approval, and real-time ERP integration.",
+      "roles_and_responsibilities": [
+        "Built OIC-based integrations for connecting front-end forms with Oracle Cloud ERP payment modules.",
+        "Designed user-friendly VBCS interfaces for request submission, account coding, and payment tracking.",
+        "Wrote PL/SQL procedures for validations, payment record creation, and automated error handling.",
+        "Reduced manual payment processing time by 70% and improved transparency in non-standard transactions."
+      ]
+    },
+    {
+      "project": "Rental Application System",
+      "tools_used": [
+        "Oracle VBCS",
+        "Oracle Integration Cloud (OIC)",
+        "Oracle PL/SQL",
+        "Oracle Autonomous DB",
+        "REST APIs"
+      ],
+      "description": "Developed and deployed a comprehensive Rental Application System for managing property listings, tenant applications, lease agreements, and payment processing. The solution streamlined the end-to-end rental lifecycle, improved tenant engagement, and simplified administrative processes for property managers.",
+      "roles_and_responsibilities": [
+        "Designed and implemented a responsive web application using Oracle Visual Builder Cloud Service.",
+        "Built interactive UI components for tenant registration, property listings, application forms, and lease tracking.",
+        "Scheduled integrations for automatic rent reminders, payment status updates, and contract renewals.",
+        "Handled REST and SOAP APIs for bidirectional communication between external systems and Oracle cloud.",
+        "Designed dynamic, user-friendly forms in VBCS for finance teams to input and manage journals.",
+        "Developed backend procedures in PL/SQL for data validation, tenant scoring, lease expiration alerts, and reporting."
+      ]
+    },
+    {
+      "project": "Vendor Performance System",
+      "tools_used": [
+        "Oracle Integration Cloud (OIC)",
+        "Visual Builder Cloud Service (VBCS)",
+        "SQL/PLSQL"
+      ],
+      "description": "Designed and implemented a comprehensive Vendor Performance System to evaluate and monitor supplier efficiency and reliability. Integrated multiple enterprise applications using OIC, built user-friendly dashboards and forms with VBCS, and managed backend data operations using SQL/PLSQL.",
+      "roles_and_responsibilities": [
+        "Developed integration flows in OIC for seamless data sync between ERP and external vendor platforms.",
+        "Created responsive web interfaces in VBCS for vendor performance tracking and reporting.",
+        "Wrote efficient SQL/PLSQL scripts for data extraction, transformation, and analysis.",
+        "Automated performance scoring and notification workflows, improving procurement insights by 40%."
+      ]
+    },
+    {
+      "project": "Grant Billing Extension",
+      "tools_used": [
+        "Visual Builder Studio (VBS)",
+        "Oracle Integration Cloud (OIC)",
+        "REST Data Services (REST)"
+      ],
+      "description": "Designed and implemented a Grant Billing Extension solution to streamline and automate the billing process for grant-based funding within Oracle Fusion ERP. The solution enabled accurate, real-time tracking of grant expenses, milestone billing, and compliance reporting.",
+      "roles_and_responsibilities": [
+        "Developed a user-friendly web interface using Oracle Visual Builder Studio for grant administrators to view, manage, and approve billing schedules.",
+        "Implemented dynamic forms for billing adjustments, milestone tracking, and audit trail visibility.",
+        "Integrated role-based access to ensure secure handling of sensitive financial data.",
+        "Built OIC flows to integrate the front-end with Oracle Fusion ERP, enabling real-time data fetch and updates related to grant contracts and billing milestones.",
+        "Designed REST endpoints for fetching grant details, billing statuses, and document uploads.",
+        "Orchestrated processes to automate invoicing, generate billing reports, and send status notifications to stakeholders."
+      ]
+    },
+    {
+      "project": "Oracle Financials Implementation – UAE’s Hotel Chain",
+      "tools_used": [
+        "Oracle Integration Cloud (OIC)",
+        "Visual Builder Cloud Service (VBCS)"
+      ],
+      "description": "Led the implementation of Oracle Financials for a prominent hotel chain in the UAE, streamlining core finance operations such as AP, AR, GL, and fixed assets. Utilized OIC to integrate Oracle Financials with legacy hotel systems and built intuitive UIs using VBCS for enhanced user adoption.",
+      "roles_and_responsibilities": [
+        "Developed OIC integrations for seamless data exchange between property management systems and Oracle Financials.",
+        "Created custom dashboards and workflows in VBCS for finance teams to manage transactions and approvals.",
+        "Ensured compliance with regional financial regulations and VAT requirements.",
+        "Played a key role in reducing manual finance processing efforts by 60% and boosting cross-property financial transparency."
+      ]
+    }
+  ]
+  
+}
