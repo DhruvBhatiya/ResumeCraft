@@ -158,7 +158,6 @@ export default function ResumeFormPage() {
         </div>
       </div>
 
-
       {/* Summary Section */}
       <h2 className="text-xl font-semibold mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Summary Points:</h2>
       {data.profile_summary.map((summary, index) => (
@@ -169,7 +168,6 @@ export default function ResumeFormPage() {
               checked={form.selectedSummaries[index]}
               onChange={() => handleSummaryCheckboxChange(index)}
               className="mr-2 mt-1 accent-red-600"
-
             />
             {summary}
           </label>
