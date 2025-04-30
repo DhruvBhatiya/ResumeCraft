@@ -51,17 +51,24 @@ export default function ResumeFormPage() {
       .then((res) => res.json())
       .then((json) => {
         setData(json);
-        setForm({
-          name: json.name,
-          email: json.email,
-          phone: json.phone,
-          selectedSummaries: json.profile_summary.map(() => false),
-          customSummary: '',
-          selectedSkill: json.skill.map(() => false),
-          selectedProjects: json.project_details.map(() => false),
-        });
+
+        const savedFormState = localStorage.getItem('resume_form_state');
+        if (savedFormState) {
+          setForm(JSON.parse(savedFormState));
+        } else {
+          setForm({
+            name: json.name,
+            email: json.email,
+            phone: json.phone,
+            selectedSummaries: json.profile_summary.map(() => false),
+            customSummary: '',
+            selectedSkill: json.skill.map(() => false),
+            selectedProjects: json.project_details.map(() => false),
+          });
+        }
       });
   }, []);
+
 
   const handleSummaryCheckboxChange = (index: number) => {
     const updated = [...form.selectedSummaries];
@@ -111,8 +118,17 @@ export default function ResumeFormPage() {
       projects: selectedProjects,
     };
 
+    // 🔥 Store full form state to rehydrate later
     localStorage.setItem('resume_form', JSON.stringify(resumeForm));
+    localStorage.setItem('resume_form_state', JSON.stringify(form));
+
     router.push('/resume/preview');
+  };
+
+
+  const handleReset = () => {
+    localStorage.removeItem('resume_form_state');
+    window.location.reload();
   };
 
 
@@ -235,6 +251,10 @@ export default function ResumeFormPage() {
         </div>
       ))}
 
+      <button onClick={handleReset}
+        className="px-6 py-3 mr-3 bg-gray-500 hover:opacity-90 text-white rounded cursor-pointer" >
+        Reset
+      </button>
       {/* Submit Button */}
       <button
         onClick={handleSubmit}

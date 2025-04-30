@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -119,10 +120,13 @@ export default function ResumeFormPage() {
 
   return (
     <div className="p-8 max-w-3xl mx-auto bg-white text-black">
-      <h1 className="text-2xl font-bold mb-6 text-[#A82324]">ResumeCraft</h1>
+      <div className='mb-6' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 className="text-2xl font-bold  text-[#A82324]">Innovage Resume Generator</h1>
+        <Image src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={170} height={100} />
+      </div>
 
       {/* Name Input */}
-      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Name:</label>
+      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Name*</label>
       <input
         type="text"
         value={form.name}
@@ -132,21 +136,27 @@ export default function ResumeFormPage() {
       {nameError && <p className="text-red-500 text-sm mb-4">{nameError}</p>}
 
 
-      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Email:</label>
-      <input
-        type="text"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        className="border p-2 w-full mb-4"
-      />
+      <div className="flex gap-4">
+        <div className="w-1/2">
+          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Email</label>
+          <input
+            type="text"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className="border p-2 w-full mb-4"
+          />
+        </div>
 
-      <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Phone:</label>
-      <input
-        type="text"
-        value={form.phone}
-        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-        className="border p-2 w-full mb-6"
-      />
+        <div className="w-1/2">
+          <label className="block mb-2 font-bold" style={{ fontSize: '16px', color: '#A82324' }}>Phone</label>
+          <input
+            type="text"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            className="border p-2 w-full mb-4"
+          />
+        </div>
+      </div>
 
       {/* Summary Section */}
       <h2 className="text-xl font-semibold mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Summary Points:</h2>
@@ -158,7 +168,6 @@ export default function ResumeFormPage() {
               checked={form.selectedSummaries[index]}
               onChange={() => handleSummaryCheckboxChange(index)}
               className="mr-2 mt-1 accent-red-600"
-
             />
             {summary}
           </label>
@@ -193,7 +202,7 @@ export default function ResumeFormPage() {
       <h2 className="text-xl font-semibold mt-8 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Select Projects:</h2>
       {data.project_details.map((project, index) => (
         <div key={index} className="mb-2 pl-3">
-          <label className="flex items-center cursor-pointer text-sm cursor-pointer hover:text-[#A82324]" >
+          <label className="flex items-center text-sm cursor-pointer hover:text-[#A82324]" >
             <input
               type="checkbox"
               checked={form.selectedProjects[index]}
