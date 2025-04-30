@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // <-- Import router
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { MdEmail, MdPhone } from "react-icons/md";
 
@@ -9,7 +9,7 @@ type Project = {
   project: string;
   tools_used: string[];
   description: string;
-  roles_and_responsibilities: string[]; // New field for roles and responsibilities
+  roles_and_responsibilities: string[];
 };
 
 type ResumeData = {
@@ -24,7 +24,7 @@ type ResumeData = {
 export default function ResumePreviewPage() {
   const [resume, setResume] = useState<ResumeData | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
-  const router = useRouter(); // <-- Initialize router
+  const router = useRouter();
 
   const handlePrint = () => {
     if (ref.current) {
@@ -67,7 +67,6 @@ export default function ResumePreviewPage() {
     const formData = localStorage.getItem('resume_form');
     if (formData) {
       const parsed = JSON.parse(formData);
-
       setResume({
         name: parsed.name,
         email: parsed.email,
@@ -81,58 +80,78 @@ export default function ResumePreviewPage() {
     }
   }, []);
 
-  if (!resume) return <div className="p-6">Loading...</div>;
+  if (!resume) return <div style={{ padding: '24px' }}>Loading...</div>;
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      {/* Top Action Buttons (hidden when printing) */}
-
-      {/* Top Action Buttons (hidden when printing) */}
-      <div className="flex space-x-4 no-print mb-6">
+    <div style={{ padding: '24px', backgroundColor: '#f3f4f6', minHeight: '100vh' }}>
+      {/* Buttons */}
+      <div className="no-print" style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
         <button
-          onClick={() => router.back()} // <-- Back button
-          className="px-4 py-2 bg-gray-500 text-white rounded cursor-pointer"
+          onClick={() => router.back()}
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#6b7280',
+            color: '#fff',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            border: 'none',
+          }}
         >
           Back
         </button>
-
         <button
           onClick={handlePrint}
-          className="px-4 py-2 bg-[#A82324] text-white rounded cursor-pointer"
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#A82324',
+            color: '#fff',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            border: 'none',
+          }}
         >
           Print Resume
         </button>
       </div>
 
-
-      {/* Resume Content */}
-      <div ref={ref} className="bg-white text-black p-8 rounded shadow max-w-3xl mx-auto">
-
+      {/* Resume */}
+      <div
+        ref={ref}
+        style={{
+          backgroundColor: '#fff',
+          color: '#000',
+          padding: '32px',
+          // borderRadius: '8px',
+          maxWidth: '768px',
+          margin: '0 auto',
+          // boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+        }}
+      >
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
           <div>
-            <h1 className="text-3xl font-bold ">{resume.name}</h1>
-            <div className='flex gap-5 items-center mt-2'>
+            <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0 }}>{resume.name}</h1>
+            <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '20px' }}>
               {resume.email && (
-                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
-                  <MdEmail className="text-red-700" />
-                  <p>{resume.email}</p>
+                <div style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px', color: '#374151' }}>
+                  <MdEmail style={{ color: '#A82324' }} />
+                  <p style={{margin: 0}}>{resume.email}</p>
                 </div>
               )}
               {resume.phone && (
-                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
-                  <MdPhone className="text-red-700" />
-                  <p>{resume.phone}</p>
+                <div style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px', color: '#374151' }}>
+                  <MdPhone style={{ color: '#A82324' }} />
+                  <p style={{margin: 0}}>{resume.phone}</p>
                 </div>
               )}
             </div>
           </div>
-          <Image src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={170} height={100} />
+          <img src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={'170px'} height={'auto'} />
         </div>
 
-        {/* Profile Summary */}
-        <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Profile Summary</h2>
-        <ul className="list-disc pl-6 " style={{ fontSize: '13px' }}>
+        {/* Summary */}
+        <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Profile Summary</h2>
+        <ul style={{ listStyleType: 'disc', paddingLeft: '24px', fontSize: '13px' }}>
           {resume.summary
             .split(/(?<=[.!?])\s+/)
             .filter((line) => line.trim() !== '')
@@ -142,15 +161,14 @@ export default function ResumePreviewPage() {
         </ul>
 
         {/* Skills */}
-        <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Skills</h2>
+        <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Skills</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', paddingLeft: '24px' }}>
           {resume.skills.map((skill, idx) => (
             <span
               key={idx}
               style={{
                 padding: '4px 12px',
-                backgroundColor: '#000',
-                // border: '3px solid #A82324',
+                backgroundColor: '#000000',
                 color: '#fff',
                 fontSize: '0.875rem',
                 borderRadius: '9999px',
@@ -165,29 +183,32 @@ export default function ResumePreviewPage() {
         </div>
 
         {/* Projects */}
-        <h2 className="text-xl font-semibold mt-6 mb-2" style={{ fontSize: '16px', color: '#A82324' }}>Projects Details</h2>
+        <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Projects Details</h2>
         {resume.projects.map((project, idx) => (
-          <div key={idx} className="mb-6 pl-6 pb-3">
-            <h3 className="font-bold underline" style={{ fontSize: '14px' }}>Project: {project.project}</h3>
+          <div key={idx} style={{ marginBottom: '24px', paddingLeft: '24px', paddingBottom: '12px' }}>
+            <h3 style={{ fontWeight: 'bold', textDecoration: 'underline', fontSize: '14px' }}>
+              Project: {project.project}
+            </h3>
 
-            <div className='pl-4'>
-              <div className="mt-2">
-                <p className="" style={{ fontSize: '13px', color: 'black' }}>
+            <div style={{ paddingLeft: '16px' }}>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ fontSize: '13px', color: 'black' }}>
                   <strong>Tools Used: </strong>
                   {project.tools_used.map((tool, idx) => (
-                    <span style={{ fontSize: '13px' }} key={idx}>{tool}, </span>
+                    <span key={idx}>{tool}{idx < project.tools_used.length - 1 ? ', ' : ''}</span>
                   ))}
                 </p>
               </div>
-              <div className="mt-2">
-                <p className=" mt-1" style={{ fontSize: '13px', color: 'black' }}><strong style={{ fontSize: '13px' }}>Description: </strong>{project.description}</p>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ fontSize: '13px', color: 'black' }}>
+                  <strong>Description: </strong>{project.description}
+                </p>
               </div>
 
-              {/* Roles and Responsibilities */}
               {project.roles_and_responsibilities && project.roles_and_responsibilities.length > 0 && (
-                <div className="mt-2">
+                <div style={{ marginTop: '8px' }}>
                   <strong style={{ fontSize: '13px' }}>Roles and Responsibilities:</strong>
-                  <ul className="list-disc pl-6" style={{ fontSize: '13px' }}>
+                  <ul style={{ listStyleType: 'disc', paddingLeft: '24px', fontSize: '13px' }}>
                     {project.roles_and_responsibilities.map((role, idx) => (
                       <li key={idx}>{role}</li>
                     ))}

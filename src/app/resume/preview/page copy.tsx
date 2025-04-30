@@ -112,15 +112,15 @@ export default function ResumePreviewPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
           <div>
             <h1 className="text-3xl font-bold ">{resume.name}</h1>
-            <div className='flex gap-5 items-center mt-2'>
+            <div className=' mt-2' style={{display: 'flex', alignItems: 'center', gap: '20px'}}>
               {resume.email && (
-                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
+                <div className=" text-gray-700" style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <MdEmail className="text-red-700" />
                   <p>{resume.email}</p>
                 </div>
               )}
               {resume.phone && (
-                <div className="flex items-center gap-1 text-gray-700" style={{ fontSize: '13px' }}>
+                <div className=" text-gray-700" style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <MdPhone className="text-red-700" />
                   <p>{resume.phone}</p>
                 </div>
