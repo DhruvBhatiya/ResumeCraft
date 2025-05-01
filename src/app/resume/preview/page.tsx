@@ -2,7 +2,15 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { MdEmail, MdPhone } from "react-icons/md";
+
+// import { Document, Packer, Paragraph, TextRun, HeadingLevel, BulletList, Table, TableRow, TableCell, WidthType } from 'docx';
+import { saveAs } from 'file-saver';
+
+import { PreloadedLogo } from '@/app/components/PreloadedLogo';
+
+import htmlDocx from 'html-docx-js/dist/html-docx';
+
+
 
 type Project = {
   project: string;
@@ -62,6 +70,67 @@ export default function ResumePreviewPage() {
     }
   };
 
+  const handleDownloadWord = () => {
+    if (ref.current) {
+      // Clone the resume content
+      const clonedContent = ref.current.cloneNode(true) as HTMLElement;
+  
+      // Inject bullet dots before each skill badge (styled with borderRadius 9999px inside a flex container)
+      const skillTags = clonedContent.querySelectorAll('a');
+      skillTags.forEach((tag) => {
+        const isSkillPill =
+          tag.parentElement?.style?.display?.includes('flex') &&
+          tag.style.borderRadius === '9999px';
+        if (isSkillPill) {
+          tag.innerHTML = ` • ${tag.innerHTML}`;
+        }
+      });
+  
+      const contentHTML = clonedContent.outerHTML;
+  
+      const html = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                font-size: 12pt;
+                color: #000;
+              }
+              ul {
+                padding-left: 20px;
+              }
+              li {
+                margin-bottom: 4px;
+              }
+              h1, h2, h3 {
+                color: #A82324;
+              }
+              span {
+                background-color: #000;
+                color: #fff;
+                padding: 2px 8px;
+                border-radius: 9999px;
+                margin-right: 6px;
+                font-size: 12px;
+                display: inline-block;
+              }
+            </style>
+          </head>
+          <body>${contentHTML}</body>
+        </html>
+      `;
+  
+      const converted = htmlDocx.asBlob(html);
+      saveAs(converted, `${resume?.name}_Resume.docx`);
+    }
+  };
+  
+
+
+
   useEffect(() => {
     const formData = localStorage.getItem('resume_form');
     if (formData) {
@@ -111,6 +180,20 @@ export default function ResumePreviewPage() {
         >
           Print Resume
         </button>
+
+        <button
+          onClick={handleDownloadWord}
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#2f40da',
+            color: '#fff',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            border: 'none',
+          }}
+        >
+          Download Word
+        </button>
       </div>
 
       {/* Resume */}
@@ -138,7 +221,7 @@ export default function ResumePreviewPage() {
           }}
         >
           {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+          {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
             <div>
               <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0 }}>{resume.name}</h1>
               <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '20px' }}>
@@ -156,8 +239,54 @@ export default function ResumePreviewPage() {
                 )}
               </div>
             </div>
-            <img src="https://innovagecloud.com/images/logo/logo.svg" alt="Logo" width={'170px'} height={'auto'} />
-          </div>
+            <PreloadedLogo resumeAvailable={!!resume} />
+          </div> */}
+
+          <table style={{ width: '100%', marginBottom: '24px' }}>
+            <tbody>
+              <tr>
+                <td style={{ verticalAlign: 'top', width: '70%' }}>
+                  <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#000' }}>{resume.name}</h1>
+                  <table style={{ marginTop: '8px', fontSize: '13px', color: '#374151' }}>
+                    <tbody>
+                      <tr>
+                        {resume.email && (
+                          <td style={{ paddingRight: '20px' }}>
+                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <tbody>
+                                <tr>
+                                  {/* <td><MdEmail style={{ color: '#A82324' }} /></td> */}
+
+                                  <td><p style={{ margin: 0, fontSize: '12px' }}>📧 {resume.email}</p></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        )}
+                        {resume.phone && (
+                          <td>
+                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <tbody>
+                                <tr>
+                                  {/* <td><MdPhone style={{ color: '#A82324' }} /></td> */}
+
+                                  <td><p style={{ margin: 0, fontSize: '12px' }}>📞 {resume.phone}</p></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        )}
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td style={{ verticalAlign: 'top', textAlign: 'right', float: 'right' }}>
+                  <PreloadedLogo resumeAvailable={!!resume} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
 
           {/* Summary */}
           <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Profile Summary</h2>
@@ -174,7 +303,8 @@ export default function ResumePreviewPage() {
           <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Skills</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', paddingLeft: '24px' }}>
             {resume.skills.map((skill, idx) => (
-              <span
+
+              <a
                 key={idx}
                 style={{
                   padding: '4px 12px',
@@ -187,11 +317,11 @@ export default function ResumePreviewPage() {
                   marginBottom: '8px',
                   WebkitPrintColorAdjust: 'exact', // <-- Ensures color is printed in some browsers
                   printColorAdjust: 'exact', // <-- For broader support
+
                 }}
               >
                 {skill}
-              </span>
-
+              </a>
             ))}
           </div>
 
@@ -208,7 +338,7 @@ export default function ResumePreviewPage() {
                   <p style={{ fontSize: '13px', color: 'black' }}>
                     <strong>Tools Used: </strong>
                     {project.tools_used.map((tool, idx) => (
-                      <span key={idx}>{tool}{idx < project.tools_used.length - 1 ? ', ' : ''}</span>
+                      <a key={idx}>{tool}{idx < project.tools_used.length - 1 ? ', ' : ''}</a>
                     ))}
                   </p>
                 </div>
