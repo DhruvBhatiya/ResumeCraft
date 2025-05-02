@@ -74,7 +74,7 @@ export default function ResumePreviewPage() {
     if (ref.current) {
       // Clone the resume content
       const clonedContent = ref.current.cloneNode(true) as HTMLElement;
-
+  
       // Inject bullet dots before each skill badge (styled with borderRadius 9999px inside a flex container)
       const skillTags = clonedContent.querySelectorAll('a');
       skillTags.forEach((tag) => {
@@ -85,9 +85,9 @@ export default function ResumePreviewPage() {
           tag.innerHTML = ` • ${tag.innerHTML}`;
         }
       });
-
+  
       const contentHTML = clonedContent.outerHTML;
-
+  
       const html = `
         <!DOCTYPE html>
         <html>
@@ -122,12 +122,12 @@ export default function ResumePreviewPage() {
           <body>${contentHTML}</body>
         </html>
       `;
-
+  
       const converted = htmlDocx.asBlob(html);
       saveAs(converted, `${resume?.name}_Resume.docx`);
     }
   };
-
+  
 
 
 
@@ -245,32 +245,32 @@ export default function ResumePreviewPage() {
           <table style={{ width: '100%', marginBottom: '24px', border: 'none', borderCollapse: 'collapse' }}>
             <tbody>
               <tr>
-                <td style={{ verticalAlign: 'top', width: '70%', border: 'none' }}>
+                <td style={{ verticalAlign: 'top', width: '70%' }}>
                   <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#000' }}>{resume.name}</h1>
-                  <table style={{ marginTop: '8px', fontSize: '13px', color: '#374151', border: 'none', borderCollapse: 'collapse' }}>
+                  <table style={{ marginTop: '8px', fontSize: '13px', color: '#374151' }}>
                     <tbody>
                       <tr>
                         {resume.email && (
-                          <td style={{ paddingRight: '20px', border: 'none' }}>
-                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px', border: 'none' }}>
+                          <td style={{ paddingRight: '20px' }}>
+                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                               <tbody>
                                 <tr>
-                                  <td style={{ border: 'none' }}>
-                                    <p style={{ margin: 0, fontSize: '12px' }}>📧 {resume.email}</p>
-                                  </td>
+                                  {/* <td><MdEmail style={{ color: '#A82324' }} /></td> */}
+
+                                  <td><p style={{ margin: 0, fontSize: '12px' }}>📧 {resume.email}</p></td>
                                 </tr>
                               </tbody>
                             </table>
                           </td>
                         )}
                         {resume.phone && (
-                          <td style={{ border: 'none' }}>
-                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px', border: 'none' }}>
+                          <td>
+                            <table style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                               <tbody>
                                 <tr>
-                                  <td style={{ border: 'none' }}>
-                                    <p style={{ margin: 0, fontSize: '12px' }}>📞 {resume.phone}</p>
-                                  </td>
+                                  {/* <td><MdPhone style={{ color: '#A82324' }} /></td> */}
+
+                                  <td><p style={{ margin: 0, fontSize: '12px' }}>📞 {resume.phone}</p></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -280,13 +280,12 @@ export default function ResumePreviewPage() {
                     </tbody>
                   </table>
                 </td>
-                <td style={{ verticalAlign: 'top', textAlign: 'right', float: 'right', border: 'none' }}>
+                <td style={{ verticalAlign: 'top', textAlign: 'right', float: 'right' }}>
                   <PreloadedLogo resumeAvailable={!!resume} />
                 </td>
               </tr>
             </tbody>
           </table>
-
 
 
           {/* Summary */}
