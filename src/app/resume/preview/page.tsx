@@ -329,7 +329,7 @@ export default function ResumePreviewPage() {
           <h2 style={{ fontSize: '16px', fontWeight: 600, marginTop: '24px', marginBottom: '8px', color: '#A82324' }}>Projects Details</h2>
           {resume.projects.map((project, idx) => (
             <div key={idx} style={{ marginBottom: '24px', paddingLeft: '24px', paddingBottom: '12px' }}>
-              <h3 style={{ fontWeight: 'bold', textDecoration: 'underline', fontSize: '14px' }}>
+              <h3 style={{ fontWeight: 'bold', textDecoration: 'underline', fontSize: '14px', color: 'black' }}>
                 Project: {project.project}
               </h3>
 
