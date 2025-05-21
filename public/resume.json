@@ -97,7 +97,7 @@
       "Jenkins"
     ]
   },
-  "skill": ["VBCS","OIC","APEX"] ,
+  "skill": ["VBCS", "OIC", "APEX", "BIP Report", "OTBI Report"],
   "project_details": [
     {
       "project": "Time Attendance System",
